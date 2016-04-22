@@ -1,4 +1,3 @@
-
 #include "gerenciador.hpp"
 
 // metodo que retira o texto da imagem e salva em um arquivo.txt
