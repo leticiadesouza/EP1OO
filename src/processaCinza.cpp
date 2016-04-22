@@ -41,16 +41,16 @@ processaCinza::processaCinza(char *** faixa, int * medidas,string parte_segredo)
 					posicao++;
 					fim = 1;
 				}else {
-					cont_bits = 0 ;	//Reseta cont_bits de bits achados
-					segredoCinza.insert(posicao,1,letra_atual);	//Adiciona o ultimo arquimento ao fim da string
-					posicao++; //Acumulador para posição final da string
-					letra_atual = (letra_atual & 0x00); //Zera o conteudo de letra
+					cont_bits = 0 ;	//reinicia o contador
+					segredoCinza.insert(posicao,1,letra_atual);	//concatena a string
+					posicao++; 
+					letra_atual = (letra_atual & 0x00);
 				}
-			}else {	//Caso não tenha achado todos os bits
-				letra_atual = (letra_atual<<1);	//da um shift para a esquerda no contrudo de letra, deixando o ultimo bit livre para o novo arguimento
+			}else {	//achou todos os bits?
+				letra_atual = (letra_atual<<1);
 			} 
 		}
-		coluna = 0;	//Limpa Variavel inicio 3 para começar no inicio da proxima linha;
+		coluna = 0;	//reinicia da primeira coluna
 	}
 
 }
