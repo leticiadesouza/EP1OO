@@ -1,7 +1,7 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #ifndef IMAGEM_HPP
@@ -17,21 +17,21 @@ class imagem
 	// Atributos 
 protected:
 	char * MagicNumber;	//Ponteiro para alocar Numero magico da imagem
-	int * Dimensoes;	//Ponteiro para alocar Dimensões da imagem
+	int * medidas;	//Ponteiro para alocar Dimensões da imagem
 	int Profundidade;	//Variavel para alocar profundidade de cores da imagem
-	string Comentario;	//Variavel para alocar comentarios que possam conter na imagem
+	string parte_segredo;	//Variavel para alocar comentarios que possam conter na imagem
 	char *** faixa;	//Ponteiro para alocar a intensidade de cada pixel da imagem
 	// Metodos
 public:
 	char * getMagicNumber();	//Envia o numero magico
 	void setMagicNumber(char * MagicNumber);	//Seta o numero magico
-	int * getDimensoes();	//Envia o ponteiro para o inicio de aonde estão as dimensões
-	void setDimensoes(int Dimensoes[2]);	//Seta o valor de cada das dimensões
+	int * get_medidas();	//Envia o ponteiro para o inicio de aonde estão as dimensões
+	void setmedidas(int medidas[2]);	//Seta o valor de cada das dimensões
 	int getProfundidade();	//Envia o valor da profundidade de cores
 	void setProfundidade(int Profundidade);	//Seta a profundidade de cores
-	string getComentario();	//Envia o comentario da imagem
-	void setComentario(string Comentario);	//Seta o comentario
-	char *** getfaixa();	//Envia o ponteiro para o inicio do valor das cores
+	string get_parte_segredo();	//Envia o comentario da imagem
+	void setparte_segredo(string parte_segredo);	//Seta o comentario
+	char *** get_faixa();	//Envia o ponteiro para o inicio do valor das cores
 	imagem();	//Construtir virtual
 	~imagem();	//Destrutor para liberar a memoria das variaveis alocadas dinamicamente
 };

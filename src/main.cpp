@@ -1,14 +1,14 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #include <stdlib.h>		//For use of exit()
 #include <iostream>		//For use of cin // cout // delete() // new
 #include <fstream>		//For use of open() // is_open() // close () //
-#include "imagemCinza.hpp"//For use of getMagicNumber() // getComentario // getDimensoes ...
-#include "imagemRGB.hpp"	//For use of getMagicNumber() // getComentario // getDimensoes ...
+#include "imagemCinza.hpp"//For use of getMagicNumber() // get_parte_segredo // get_medidas ...
+#include "imagemRGB.hpp"	//For use of getMagicNumber() // get_parte_segredo // get_medidas ...
 #include "processaCinza.hpp"
 #include "processaRGB.hpp"
 #include "gerenciador.hpp"

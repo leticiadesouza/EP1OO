@@ -4,7 +4,7 @@ using namespace std;
 
 imagemCinza::imagemCinza(const char * arquivo){
 	MagicNumber = new char[3];
-	Dimensoes = new int[2];
+	medidas = new int[2];
 
 	ifstream leitor;
 
@@ -18,14 +18,14 @@ imagemCinza::imagemCinza(const char * arquivo){
 
 			auxiliar = leitor.peek();	//'Espiando' a proxima letra do arquivo
 			if (auxiliar == '#'){	//Caso seja comentario salva o valor em comentario
-				getline (leitor,Comentario);
-				Comentario = Comentario + " ";
-				setComentario(Comentario);
+				getline (leitor,parte_segredo);
+				parte_segredo = parte_segredo + " ";
+				setparte_segredo(parte_segredo);
 			}
 			else if (saida == 0)	//Caso não seja comentario e nenhum argumento seja sido achado no arquivo é salvo o valor das dimensões
 			{
-				leitor >> Dimensoes[0];
-				leitor >> Dimensoes[1];
+				leitor >> medidas[0];
+				leitor >> medidas[1];
 				saida ++;
 			}
 			else if (saida == 1){	//Caso não seja comentario e já tenha sido salvo o primeiro argumento é salvo o valor da profundidade
@@ -43,19 +43,19 @@ imagemCinza::imagemCinza(const char * arquivo){
 		}
 	} //Fechando escopo para destruir variaveis locais
 	//Alocação Dinamica das camadas
-	faixa = new char ** [Dimensoes[0]];
-	for (int i = 0; i < Dimensoes[0]; ++i)
+	faixa = new char ** [medidas[0]];
+	for (int i = 0; i < medidas[0]; ++i)
 	{
-		faixa[i] = new char * [Dimensoes[1]];
-		for (int j = 0; j < Dimensoes[1]; ++j)
+		faixa[i] = new char * [medidas[1]];
+		for (int j = 0; j < medidas[1]; ++j)
 		{
 		faixa[i][j] = new char ;
 		}
 	}
 	//Copiando o valor do arquivo para a memoria
-	for (int i = 0; i < Dimensoes[0]; ++i)
+	for (int i = 0; i < medidas[0]; ++i)
 	{
-		for (int j = 0; j < Dimensoes[1]; ++j)
+		for (int j = 0; j < medidas[1]; ++j)
 		{
 			leitor.get(faixa[i][j][0]);
 		}

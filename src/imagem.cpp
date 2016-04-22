@@ -1,7 +1,7 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #include "imagem.hpp"
@@ -16,12 +16,12 @@ void imagem::setMagicNumber(char * MagicNumber){
 	this->MagicNumber = MagicNumber;
 }
 
-int * imagem::getDimensoes(){
-	return Dimensoes;
+int * imagem::get_medidas(){
+	return medidas;
 }
 
-void imagem::setDimensoes(int Dimensoes[2]){
-	this->Dimensoes=Dimensoes;
+void imagem::setmedidas(int medidas[2]){
+	this->medidas=medidas;
 }
 
 int imagem::getProfundidade(){
@@ -32,15 +32,15 @@ void imagem::setProfundidade(int Profundidade){
 	this->Profundidade=Profundidade;
 }
 
-string imagem::getComentario(){
-	return Comentario;
+string imagem::get_parte_segredo(){
+	return parte_segredo;
 }
 
-void imagem::setComentario(string Comentario){
-	this->Comentario=Comentario;	
+void imagem::setparte_segredo(string parte_segredo){
+	this->parte_segredo=parte_segredo;	
 }
 
-char *** imagem::getfaixa(){
+char *** imagem::get_faixa(){
 	return faixa;
 }
 
@@ -49,6 +49,6 @@ imagem::imagem(){
 
 imagem::~imagem(){
 	delete[](MagicNumber);
-	delete[](Dimensoes);
+	delete[](medidas);
 	delete[](faixa);
 };

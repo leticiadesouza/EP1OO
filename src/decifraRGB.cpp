@@ -1,22 +1,22 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #include "processaRGB.hpp"
 
-processaRGB::processaRGB(char *** faixa, int * Dimensoes, int Cor){
+processaRGB::processaRGB(char *** faixa, int * medidas, int cor){
 
 //----------------------------------
-//---------Cor 0x00 = Vermelho------
-//---------Cor 0x01 = Verde---------
-//---------Cor 0x10 = Azul----------
+//---------cor 0x00 = Vermelho------
+//---------cor 0x01 = Verde---------
+//---------cor 0x10 = Azul----------
 //----------------------------------
 
-int I = (*(Dimensoes));	//Passa de ponteiro para alocação estatica
-int J = (*(Dimensoes + 1 ));	//Passa de ponteiro para alocação estatica
-int CorAtual = 0;	//Variavel para acompanhar qual cor o processo esta verificando no memento
+int I = (*(medidas));	//Passa de ponteiro para alocação estatica
+int J = (*(medidas + 1 ));	//Passa de ponteiro para alocação estatica
+int cor_atual = 0;	//Variavel para acompanhar qual cor o processo esta verificando no memento
 
 //Alocação de camadaRGB
 faixaRGB = new char ** [I];
@@ -35,10 +35,10 @@ faixaRGB = new char ** [I];
 		{
 			for (int k = 0; k < 3; ++k)
 			{
-				if (CorAtual==Cor)	faixaRGB[i][j][k] = faixa[i][j][k];	//Caso a cor atual seja a escolhida pelo usuario essa cor é copiada
+				if (cor_atual==cor)	faixaRGB[i][j][k] = faixa[i][j][k];	//Caso a cor atual seja a escolhida pelo usuario essa cor é copiada
 				else	faixaRGB[i][j][k] = 0x00;	//Caso a cor atual seja diferente da escolhida pelo usuario essa cor é apagada
-				CorAtual++;	//É incrementado cor atual
-				if (CorAtual==3) CorAtual=0;	//Caso cor atual seja maior que o valor maximo ela é resetada para o inicio
+				cor_atual++;	//É incrementado cor atual
+				if (cor_atual==3) cor_atual=0;	//Caso cor atual seja maior que o valor maximo ela é resetada para o inicio
 			}
 		}
 	}

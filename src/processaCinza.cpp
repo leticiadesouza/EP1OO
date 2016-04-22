@@ -1,69 +1,56 @@
-//___________________________________________________________________
-//---------Trabalho de Programação 1----------01/2016----------------
-//---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
-//---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
-//___________________________________________________________________
 #include "processaCinza.hpp"
-//declaração por causa das strings
 using namespace std;
 
-processaCinza::processaCinza(char *** faixa, int * Dimensoes,string Comentario){
+processaCinza::processaCinza(char *** faixa, int * medidas,string parte_segredo){
 
-	//Achando o Inicio da mensagem escondida
-	int Inicio;
-	{//Abrindo escopo para uso de variaveis locais
-		char * buffer;
-		buffer = new char[Comentario.size()];
-		Comentario.copy(buffer,Comentario.size(),0); //Transformanda de String para *char para poder usar isdigit
-		unsigned int i = 0;
+	//variavel que aponta o inicio da mensagem
+	int inicio;
+	{//Abrindo escopo
+		char * segredo_array;
+		segredo_array = new char[parte_segredo.size()];
+		parte_segredo.copy(segredo_array,parte_segredo.size(),0);
+		unsigned int contador = 0;
 		locale loc;
-		while(isdigit(buffer[i],loc)==0 || i == Comentario.size()){	//Verificando se o valor é um numero ou não
-			i++;
+		while(contador == parte_segredo.size() || isdigit(segredo_array[contador],loc)==0 ){ // e um numero?
+			contador++;
 		}
-		Inicio  = atoi(buffer+i);	//Transformando de char para inteiro
-		delete(buffer);	//Liberando a memoria de buffer
-	}//Fechando escopo para destruir variaveis locais
+		inicio  = atoi(segredo_array+contador);	
+		delete(segredo_array);	//deletando o ponteiro segredo_array
+	}//Fechando escopo
 
-	char Letra; //Varivel para acumular a letra atual
-	int Contador = 0;	//Conta o numero de Bits extraidos
-	int FimDaBusca = 0;	//Verifica se foram achado todas as letras
-	int k = 0;	//Salva a posição a ser salva a letra na string
-	int I = (*(Dimensoes));	//Passa de ponteiro para alocação estatica
-	int J = (*(Dimensoes + 1 ));	//Passa de ponteiro para alocação estatica
-	int Inicio2 =  ( ( Inicio ) / ( I ) ) ;	//Acha a linha aonde se começa o texto escondido
-	int Inicio3 = ( Inicio - (Inicio2) *  I ); //Acha a coluna aonde se começa o texto escondido
+	int posicao = 0;	
+	int medida = (*(medidas));
+	int linha =  ( ( inicio ) / ( medida ) ) ;	//acha linha
+	int coluna = ( inicio - (linha) *  medida ); //Acha coluna 
+	int cont_bits = 0;	//numero de bits
+	int fim = 0;
+	int proxima_medida = (*(medidas + 1 ));	//evitando ponteiro
+	char letra_atual; //letra corrente
 
-	for (int i = Inicio2; i < I ; ++i)
+	for (int cont_linhas = linha; cont_linhas < medida ; ++cont_linhas)
 	{
-		for (int j = Inicio3; j < J ; ++j)
+		for (int cont_colunas = coluna; cont_colunas < proxima_medida ; ++cont_colunas)
 		{
-			Letra = (Letra | ((faixa[i][j][0]) & (0x01)));	//Remove ultimo Bit do pixel atual e salva em Letra, com os pixels anteriores
-			Contador++;	//Atualiza o numero de bits achados
-			if (Contador == 8){	//Se for achado todos os bits 
-				if (FimDaBusca == 1){	//Verifica se já foi achada toda mensagem
+			letra_atual = (letra_atual | ((faixa[cont_linhas][cont_colunas][0]) & (0x01)));	//concatena os ultimos bits
+			cont_bits++;
+			if (cont_bits == 8){	//verifica se todos os bits foram encontrados 
+				if (fim == 1){	//Verifica se já foi achada toda mensagem
 
+				}else if (letra_atual == '#') {	//e o ultimo digito?
+					segredoCinza.insert(posicao,1,letra_atual);	//adiciona ultimo digito
+					posicao++;
+					fim = 1;
+				}else {
+					cont_bits = 0 ;	//Reseta cont_bits de bits achados
+					segredoCinza.insert(posicao,1,letra_atual);	//Adiciona o ultimo arquimento ao fim da string
+					posicao++; //Acumulador para posição final da string
+					letra_atual = (letra_atual & 0x00); //Zera o conteudo de letra
 				}
-				else if (Letra == '#')	//Verifica se é o ultimo argumento a ser achado
-				{
-					segredoCinza.insert(k,1,Letra);	//Adiciona o ultimo arquimento ao fim da string
-					k++;	//Acumulador para posição final da string
-					FimDaBusca = 1;	//Argumento para definir que a busca acabou
-				}
-				else
-				{
-					Contador = 0 ;	//Reseta contador de bits achados
-					segredoCinza.insert(k,1,Letra);	//Adiciona o ultimo arquimento ao fim da string
-					k++; //Acumulador para posição final da string
-					Letra = (Letra & 0x00); //Zera o conteudo de letra
-				}
-			}
-			else	//Caso não tenha achado todos os bits
-			{
-				Letra = (Letra<<1);	//da um shift para a esquerda no contrudo de letra, deixando o ultimo bit livre para o novo arguimento
+			}else {	//Caso não tenha achado todos os bits
+				letra_atual = (letra_atual<<1);	//da um shift para a esquerda no contrudo de letra, deixando o ultimo bit livre para o novo arguimento
 			} 
 		}
-		Inicio3 = 0;	//Limpa Variavel Inicio 3 para começar no inicio da proxima linha;
+		coluna = 0;	//Limpa Variavel inicio 3 para começar no inicio da proxima linha;
 	}
 
 }

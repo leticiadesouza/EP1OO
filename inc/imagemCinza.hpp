@@ -1,7 +1,7 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #ifndef IMAGEMCINZA_HPP

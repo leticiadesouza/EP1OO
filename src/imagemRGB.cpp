@@ -1,7 +1,7 @@
 //___________________________________________________________________
 //---------Trabalho de Programação 1----------01/2016----------------
 //---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato Coral Sampario--------------------------
+//---------Professor: Ranato coral Sampario--------------------------
 //---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
 //___________________________________________________________________
 #include "imagemRGB.hpp"
@@ -10,7 +10,7 @@ using namespace std;
 
 imagemRGB::imagemRGB(const char * Arquivo){
 	MagicNumber = new char[3];
-	Dimensoes = new int[2];
+	medidas = new int[2];
 
 	ifstream Leitor;
 
@@ -24,14 +24,14 @@ imagemRGB::imagemRGB(const char * Arquivo){
 
 			auxiliar = Leitor.peek();	//'Espiando' a proxima letra do arquivo
 			if (auxiliar == '#'){	//Caso seja comentario salva o valor em comentario
-				getline (Leitor,Comentario);
-				Comentario = Comentario + " ";
-				setComentario(Comentario);
+				getline (Leitor,parte_segredo);
+				parte_segredo = parte_segredo + " ";
+				setparte_segredo(parte_segredo);
 			}
 			else if (saida == 0)	//Caso não seja comentario e nenhum argumento seja sido achado no arquivo é salvo o valor das dimensões
 			{
-				Leitor >> Dimensoes[0];
-				Leitor >> Dimensoes[1];
+				Leitor >> medidas[0];
+				Leitor >> medidas[1];
 				saida ++;
 			}
 			else if (saida == 1){	//Caso não seja comentario e já tenha sido salvo o primeiro argumento é salvo o valor da profundidade
@@ -50,19 +50,19 @@ imagemRGB::imagemRGB(const char * Arquivo){
 
 	} //Fechando escopo para destruir variaveis locais
 	//Alocação Dinamica das camadas
-	faixa = new char ** [Dimensoes[0]];
-	for (int i = 0; i < Dimensoes[0]; ++i)
+	faixa = new char ** [medidas[0]];
+	for (int i = 0; i < medidas[0]; ++i)
 	{
-		faixa[i] = new char * [Dimensoes[1]];
-		for (int j = 0; j < Dimensoes[1]; ++j)
+		faixa[i] = new char * [medidas[1]];
+		for (int j = 0; j < medidas[1]; ++j)
 		{
 		faixa[i][j] = new char[3] ;
 		}
 	}
 	//Copiando o valor do arquivo para a memoria
-	for (int i = 0; i < Dimensoes[0]; ++i)
+	for (int i = 0; i < medidas[0]; ++i)
 	{
-		for (int j = 0; j < Dimensoes[1]; ++j)
+		for (int j = 0; j < medidas[1]; ++j)
 		{
 			for (int k = 0; k < 3; ++k)
 			{

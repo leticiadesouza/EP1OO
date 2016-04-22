@@ -10,7 +10,7 @@ using namespace std;
 //especificacao da classe processa referente as imagens em escalas de cinza
 class processaCinza : public processa {
 public:
-	processaCinza(char *** faixa, int * Dimensoes,string Comentario);
+	processaCinza(char *** faixa, int * medidas, string parte_segredo);
 };
 
 #endif

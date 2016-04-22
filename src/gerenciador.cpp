@@ -4,17 +4,16 @@
 // metodo que retira o texto da imagem e salva em um arquivo.txt
 void Gerenciador::obter_segredo(imagemCinza * imagem) {
 	ofstream arquivo;
-	processaCinza Texto(imagem->getfaixa(), imagem->getDimensoes(),imagem->getComentario());
+	processaCinza Texto(imagem->get_faixa(), imagem->get_medidas(),imagem->get_parte_segredo());
 	arquivo.open ("doc/segredoImagem.txt", fstream::out | fstream::trunc); //abrindo arquivo na pasta doc com o nome segredoImagem.txt
 	if (arquivo.is_open()) { //o arquivo esta aberto?
-		//cout << "PRINTANDO: " << Texto.getSegredoCinza();
-		arquivo << Texto.getSegredoCinza();
-		//cout << "AQUIIIII> " << Texto.getSegredoCinza() << "\n\n\n\n\n"; 
+		cout << "AQUIIIII> " << Texto.getSegredoCinza() << endl;
+		arquivo << Texto.getSegredoCinza(); 
 		arquivo.close();//fechando arquivo
 		cout << "Segredo registrado em: doc/segredoImagem.txt" << endl << "Enter para retornar ao menu" << endl;
-		cin.clear();	//limpando o buffer
-		cin.ignore(10000,'\n');
-		//getchar();//Esperando qualquer entrada do usuario
+		//cin.clear();	//limpando o buffer
+		//cin.ignore(10000,'\n');
+		getchar();//Esperando qualquer entrada do usuario
     }
 	else {//em caso de falha ao abrir o arquivo
 		cout << "ERRO!!\n Falha ao abrir o arquivo" << endl;
@@ -130,7 +129,7 @@ void Gerenciador::tratar_imagem_colorida() {
 	system("clear");
 	//Alocando Variaveis Locais
 	int numero_cor;	//Variavel para selecionar a unica cor a permanecer na imagem
-	//Menu de selecão de Cor
+	//Menu de selecão de cor
 	cout << "-------------------------------------------------------" << endl;
 	cout << "------------Escola a camada a ser Mantida--------------" << endl;
 	cout << "------------1 -> Vermelho------------------------------" << endl;
@@ -141,14 +140,14 @@ void Gerenciador::tratar_imagem_colorida() {
 	
 	if (numero_cor == 1)
 	{
-		cout << endl << "Foi Selecionada a Cor Vermelha" << endl;
+		cout << endl << "Foi Selecionada a cor Vermelha" << endl;
 	}
 	else if (numero_cor == 2)
 	{
-		cout << endl << "Foi Selecionada a Cor Verde" << endl;
+		cout << endl << "Foi Selecionada a cor Verde" << endl;
 	}else if (numero_cor == 3)
 	{
-		cout << endl << "Foi Selecionada a Cor Azul" << endl;
+		cout << endl << "Foi Selecionada a cor Azul" << endl;
 	}else{
 		cout << endl << "Opção Invalida" << endl;
 		cout << "Pressione qualquer tecla para voltar ao menu inicial"<< endl;
@@ -158,20 +157,20 @@ void Gerenciador::tratar_imagem_colorida() {
 		delete(imagem);
 	}
 
-	//Remove a Cor das camadas não desejadas
-	processaRGB Texto(imagem->getfaixa(), imagem->getDimensoes(), numero_cor - 1);
+	//Remove a cor das camadas não desejadas
+	processaRGB Texto(imagem->get_faixa(), imagem->get_medidas(), numero_cor - 1);
 	arquivo.open ("doc/MensagemEscondida.ppm", fstream::out | fstream::trunc);
 	//Verifica se o arquivo aonde vai ser salvo as imagem com o segredo revelado foi aberta corretamente
 	if (arquivo.is_open()) {
 
 		arquivo << imagem->getMagicNumber() << endl;
-		arquivo << *(imagem->getDimensoes()) << " " << *(imagem->getDimensoes()+1) << endl;
+		arquivo << *(imagem->get_medidas()) << " " << *(imagem->get_medidas()+1) << endl;
 		arquivo << imagem->getProfundidade() << endl;
 
 		char *** Intensidade = Texto.getFaixaRGB();
-			for (int i = 0; i < *(imagem->getDimensoes()); ++i)
+			for (int i = 0; i < *(imagem->get_medidas()); ++i)
 		{
-			for (int j = 0; j < *(imagem->getDimensoes()+1) ; ++j)
+			for (int j = 0; j < *(imagem->get_medidas()+1) ; ++j)
 			{
 				for (int k = 0; k < 3; ++k)
 				{
