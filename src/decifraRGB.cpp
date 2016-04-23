@@ -1,6 +1,6 @@
-#include "processaRGB.hpp"
+#include "decifraRGB.hpp"
 
-processaRGB::processaRGB(char *** faixa, int * medidas, int cor){
+decifraRGB::decifraRGB(char *** faixa, int * medidas, int cor){
 
 int medida = (*(medidas));	//evitando ponteiro
 int proxima_medida = (*(medidas + 1 ));	//evitando ponteiro
@@ -21,10 +21,10 @@ faixaRGB = new char ** [medida];
 				if (cor_atual==cor){// e a cor escolhida pelo usuario?	
 					faixaRGB[i][j][k] = faixa[i][j][k]; //salva cor
 				}else {	
-					faixaRGB[i][j][k] = 0x00; //cor diferente da escolhida e excluida
+					faixaRGB[i][j][k] = 0x00; //excluir cor diferente da cor desejada
 				}	
-				cor_atual++;	//É incrementado cor atual
-				if (cor_atual==3) cor_atual=0;	//Caso cor atual seja maior que o valor maximo ela é resetada para o inicio
+				cor_atual++;	//acrescenta cor atual
+				if (cor_atual==3) cor_atual=0;	//volta para o inicio caso a cor atual ultrapasse o valor magico
 			}
 		}
 	}

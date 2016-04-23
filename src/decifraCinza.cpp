@@ -1,7 +1,7 @@
-#include "processaCinza.hpp"
+#include "decifraCinza.hpp"
 using namespace std;
 
-processaCinza::processaCinza(char *** faixa, int * medidas,string parte_segredo){
+decifraCinza::decifraCinza(char *** faixa, int * medidas,string parte_segredo){
 
 	//variavel que aponta o inicio da mensagem
 	int inicio;

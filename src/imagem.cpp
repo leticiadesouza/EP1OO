@@ -2,12 +2,12 @@
 
 using namespace std;
 
-char * imagem::getMagicNumber(){
-	return MagicNumber;
+char * imagem::get_numero_magico(){
+	return numero_magico;
 }
 
-void imagem::setMagicNumber(char * MagicNumber){
-	this->MagicNumber = MagicNumber;
+void imagem::set_numero_magico(char * numero_magico){
+	this->numero_magico = numero_magico;
 }
 
 int * imagem::get_medidas(){
@@ -42,7 +42,7 @@ imagem::imagem(){
 };
 
 imagem::~imagem(){
-	delete[](MagicNumber);
+	delete[](numero_magico);
 	delete[](medidas);
 	delete[](faixa);
 };

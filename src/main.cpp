@@ -1,15 +1,15 @@
-#include <stdlib.h>		//For use of exit()
-#include <iostream>		//For use of cin // cout // delete() // new
-#include <fstream>		//For use of open() // is_open() // close () //
-#include "imagemCinza.hpp"//For use of getMagicNumber() // get_parte_segredo // get_medidas ...
-#include "imagemRGB.hpp"	//For use of getMagicNumber() // get_parte_segredo // get_medidas ...
-#include "processaCinza.hpp"
-#include "processaRGB.hpp"
+#include <stdlib.h>		
+#include <iostream>		
+#include <fstream>		
+#include "imagemCinza.hpp"
+#include "imagemRGB.hpp"
+#include "decifraCinza.hpp"
+#include "decifraRGB.hpp"
 #include "gerenciador.hpp"
-//declaração por causa de cin cout e outras chamadas
+
 using namespace std;
 
-int menu();//assinatura da funcao menu
+int menu();
 
 int main(int argc, char const *argv[]) {
 	Gerenciador gerenciador;
@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]) {
 		valor = menu();
 		switch (valor) {
 		case 0:	
-			cout << "Fechando o Programa" << endl;
+			cout << "     Programa encerrado" << endl;
 			break;
 		case 1:
 			gerenciador.tratar_imagem_cinza();		
@@ -28,10 +28,10 @@ int main(int argc, char const *argv[]) {
 			gerenciador.tratar_imagem_colorida();
 			break;
 		default:
-			cout << "Opção Invalida" << endl;
-			cout << "Pressione qualquer tecla para voltar ao menu inicial" << endl;
+			cout << "ERRO!! Caminho invalido" << endl;
+			cout << "Enter para retornar ao menu" << endl;
 			cin.clear();
-			cin.ignore(10000,'\n');
+			cin.ignore(10000,'\n'); 
 			cin.ignore(1);
 		break;
 		}
@@ -41,14 +41,18 @@ int main(int argc, char const *argv[]) {
 	return 0;
 }
 int menu() {
-	int opcao_menu = 4;		//Variavel para navegar pelo Menu
-	system("clear");	//Limpeza da Tela
-	cout << "-------------------------------------------------------" << endl;
-	cout << "----------Escolha uma opçao do menu abaixo:------------" << endl;
-	cout << "1 - Localizar testo em uma imagem em escala de Cinza---" << endl;
-	cout << "2 - Ver Apenas uma camada de cor em uma imagem colorida" << endl;
-	cout << "0 - Sair-----------------------------------------------" << endl;
-	cout << "Opçao:  ";
+	int opcao_menu = 4;
+	system("clear");//Limpa a Tela
+	cout << "*******************************************************" << endl;
+	cout << "*             Universidade de Brasilia                *" << endl;
+	cout << "*          Disciplina:Orientacao a Objetos            *" << endl;
+	cout << "*     Aluna:Leticia de Souza Santos - 15/0015160      *" << endl;
+	cout << "*******************************************************" << endl;
+	cout << "               Digite a opcao desejada: " << endl;
+	cout << "      1 -> Segredo da imagem cinza "      << endl;
+	cout << "      2 -> Exibir uma camada de cor na imagem colorida" << endl;
+	cout << "      0 -> Sair " << endl;
+	cout << "      Opçao:  ";
 	cin >> opcao_menu;
 	cout << endl;
 	return opcao_menu;

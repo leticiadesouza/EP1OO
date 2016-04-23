@@ -2,13 +2,13 @@
 using namespace std;
 
 imagemCinza::imagemCinza(const char * arquivo){
-	MagicNumber = new char[3];
+	numero_magico = new char[3];
 	medidas = new int[2];
 
 	ifstream leitor;
 
 	leitor.open (arquivo, ifstream::in | ifstream::binary);
-	leitor.getline(MagicNumber,3);	//numero magico ja definido como primeiro valor do arquivo
+	leitor.getline(numero_magico,3);	//numero magico ja definido como primeiro valor do arquivo
 		
 	{	//criando escopo
 		int saida = 0;	//confere se todos os parametros foram encontrados
