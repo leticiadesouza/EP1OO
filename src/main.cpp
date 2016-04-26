@@ -22,7 +22,8 @@ int main(int argc, char const *argv[]) {
 			cout << "     Programa encerrado" << endl;
 			break;
 		case 1:
-			gerenciador.tratar_imagem_cinza();		
+			gerenciador.tratar_imagem_cinza();	
+			cout << "Biscoito"	<< endl;
 			break;
 		case 2:
 			gerenciador.tratar_imagem_colorida();
@@ -35,7 +36,6 @@ int main(int argc, char const *argv[]) {
 			cin.ignore(1);
 		break;
 		}
-
 	}while(valor != 0);
 
 	return 0;

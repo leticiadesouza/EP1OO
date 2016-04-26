@@ -1,4 +1,5 @@
 #include "gerenciador.hpp"
+#include <unistd.h>
 
 // metodo que retira o texto da imagem e salva em um arquivo.txt
 void Gerenciador::obter_segredo(imagemCinza * imagem) {
@@ -6,13 +7,17 @@ void Gerenciador::obter_segredo(imagemCinza * imagem) {
 	decifraCinza Texto(imagem->get_faixa(), imagem->get_medidas(),imagem->get_parte_segredo());
 	arquivo.open ("doc/segredoImagem.txt", fstream::out | fstream::trunc); //abrindo arquivo na pasta doc com o nome segredoImagem.txt
 	if (arquivo.is_open()) { //o arquivo esta aberto?
-		cout << "AQUIIIII> " << Texto.getSegredoCinza() << endl;
-		arquivo << Texto.getSegredoCinza(); 
+		if(Texto.getSegredoCinza().size() < 15){//Verificando se o erro aleatório está ocorrendo.
+			cout << "ERRO! Este erro está acontecendo aleatoriamente e está sendo explicado no README.md" << endl;
+			cout << "Saia do programa e compile novamente.." << endl;
+		}else{
+			cout << "Segredo: > " << Texto.getSegredoCinza() << endl;
+			arquivo << Texto.getSegredoCinza();
+			cout << "Segredo registrado em: doc/segredoImagem.txt" << endl << "Enter para retornar ao menu" << endl;
+		}
 		arquivo.close();//fechando arquivo
-		cout << "Segredo registrado em: doc/segredoImagem.txt" << endl << "Enter para retornar ao menu" << endl;
 		cin.clear();	//limpando o buffer
 		cin.ignore(10000,'\n');
-		//getchar();//Esperando qualquer entrada do usuario
     }
 	else {//em caso de falha ao abrir o arquivo
 		cout << "ERRO!!\n Falha ao abrir o arquivo" << endl;
@@ -65,6 +70,10 @@ string Gerenciador::obter_info_imagem(){
 	cout << "insira o nome da imagem: " << endl;
 	cin.clear();//limpando o buffer
 	getline(cin, nome);
+	if (nome.size() <1 ){
+		nome = "erro";
+	}
+
 	return caminho + "/" + nome;//construindo string para achar o arquivo
 } 
 void Gerenciador::tratar_imagem_cinza(){
@@ -83,14 +92,15 @@ void Gerenciador::tratar_imagem_cinza(){
     }
 	else {
 		//nada a fazer
-	}
-	{//definindo escopo
 		char numero_magico[3];	
 		arquivo.getline(numero_magico,3);
 		arquivo.close();
 		//Apos verificar a abertura do arquivo, verifica-se o formato
 		verifica_formato(caminho_arquivo, numero_magico);//verifica o formato e chama o metodo obter segredo
 	}
+	//cout << "Biscoito2" << endl;
+
+
 }
 
 void Gerenciador::tratar_imagem_colorida() {
@@ -103,7 +113,7 @@ void Gerenciador::tratar_imagem_colorida() {
 		cout << "ERRO!! O arquivo nao pode ser aberto"<< endl;
 		cout << "Enter para retornar ao menu"<< endl;
 		cin.clear();	//limpando buffer
-			cin.ignore(10000,'\n');
+		cin.ignore(10000,'\n');
 		cin.ignore(1);
     }
 	else { //nada a fazer
@@ -125,7 +135,7 @@ void Gerenciador::tratar_imagem_colorida() {
 			cin.clear();	//limpando buffer
 			cin.ignore(10000,'\n');
 			cin.ignore(1);
-			delete(imagem);
+			//delete(imagem);
 
 		}
 	}

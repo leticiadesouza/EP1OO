@@ -1,4 +1,5 @@
 #include "decifraCinza.hpp"
+#include <unistd.h>
 using namespace std;
 
 decifraCinza::decifraCinza(char *** faixa, int * medidas,string parte_segredo){
@@ -39,6 +40,9 @@ decifraCinza::decifraCinza(char *** faixa, int * medidas,string parte_segredo){
 				}else if (letra_atual == '#') {	//e o ultimo digito?
 					segredoCinza.insert(posicao,1,letra_atual);	//adiciona ultimo digito
 					posicao++;
+					segredoCinza.insert(posicao,1,'\0');	//adiciona ultimo digito
+					segredoCinza.begin();
+					posicao++;
 					fim = 1;
 				}else {
 					cont_bits = 0 ;	//reinicia o contador
@@ -52,5 +56,5 @@ decifraCinza::decifraCinza(char *** faixa, int * medidas,string parte_segredo){
 		}
 		coluna = 0;	//reinicia da primeira coluna
 	}
-
+ 
 }
