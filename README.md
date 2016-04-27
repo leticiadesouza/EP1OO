@@ -1,24 +1,30 @@
-//___________________________________________________________________
-//---------Trabalho de Programação 1----------01/2016----------------
-//---------Materia de Orientação a Objetos // Codigo: 195341---------
-//---------Professor: Ranato coral Sampario--------------------------
-//---------Aluno: Vinicius Guimarães Hass // Matricula 10/0021751----
-//___________________________________________________________________
+EXERCÍCIO DE PROGRAMAÇÃO 1
+Aluna: Leticia de Souza Santos 
+Matrícula: 15/0015160
+Disciplina: Orientação a Objetos
 
-This program make the extraction of a hidden text in the imagens of type pgm (P5)
-Or it make the extraction of a hidden imagen at a layer of one color in the imagens of type ppm (P6)
+Instruções para compilação:
 
-/-------------------------------------------------------------------
+*Utilize o comando make;
 
-Methods of usage this Program
+*Há duas opções para compilar o programa:
+-	./bin/main
+-	make run
 
-For use of function call use (./bin/main)
+*As imagens de formato PGM E PPM estão diponíveis para teste na pasta doc 
 
-Any file the program need to create, will be created in actual/doc/
+*No menu, digite a opção relativa ao tipo de imagem que deseja decifrar;
 
-For use of program follow the mensagens in the screen
+*Digite o caminho que localize o arquivo que deseja abrir;
 
-If the image with secret in a subfolder write the folder/.../image.format
-Ex.: doc/lena.pgm or doc/secret.ppm
+*Digite o nome da imagem;
 
-If the image with secret is in any folder write all path, maximum 253 characteres to send the path
+*Caso a mensagem seja do formato PPM, o programa exibirá o segredo;
+
+*Caso o programa exiba a mensagem de erro, pressione enter para retortar às opções de menu e digite 0 para sair do programa
+
+*Dê um make clean e siga as intruções desde o início, novamente.
+
+*O erro ocorre de forma aleatória, de modo que, ao sair e retornar ao programa o segredo é exibido;
+
+*Caso a imagem seja do formato PGM, 

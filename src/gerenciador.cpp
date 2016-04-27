@@ -8,7 +8,7 @@ void Gerenciador::obter_segredo(imagemCinza * imagem) {
 	arquivo.open ("doc/segredoImagem.txt", fstream::out | fstream::trunc); //abrindo arquivo na pasta doc com o nome segredoImagem.txt
 	if (arquivo.is_open()) { //o arquivo esta aberto?
 		if(Texto.getSegredoCinza().size() < 15){//Verificando se o erro aleatório está ocorrendo.
-			cout << "ERRO! Este erro está acontecendo aleatoriamente e está sendo explicado no README.md" << endl;
+			cout << "ERRO ALEATORIO!! O mesmo esta sendo explicado no README.md" << endl;
 			cout << "Saia do programa e compile novamente.." << endl;
 		}else{
 			cout << "Segredo: > " << Texto.getSegredoCinza() << endl;
@@ -98,7 +98,6 @@ void Gerenciador::tratar_imagem_cinza(){
 		//Apos verificar a abertura do arquivo, verifica-se o formato
 		verifica_formato(caminho_arquivo, numero_magico);//verifica o formato e chama o metodo obter segredo
 	}
-	//cout << "Biscoito2" << endl;
 
 
 }
